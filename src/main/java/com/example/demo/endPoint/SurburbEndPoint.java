@@ -26,4 +26,6 @@ public interface SurburbEndPoint {
 	@ResponseBody
 	public List<SurburbResponseDto> getSurburbByPostCode(@RequestParam(value="postCode") List<String> postCode) throws ValidationException;
 
+	
+
 }

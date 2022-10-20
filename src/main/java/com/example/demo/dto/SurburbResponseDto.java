@@ -24,6 +24,6 @@ public class SurburbResponseDto {
   private String postCode;
   
   @JsonProperty("total")
-  private long total;
+  private Integer total;
 
 }

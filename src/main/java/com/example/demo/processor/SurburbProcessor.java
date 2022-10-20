@@ -33,22 +33,23 @@ public class SurburbProcessor {
   }
   public List<SurburbResponseDto> getSurburbByPostCode (List<String> postCode) throws ValidationException {
 	  log.info("checking if post code exist in database");
-	  List<SurburbModel> findByPostCode= surburbDao.findAllBypostCode(postCode);
+	  List<SurburbModel> findByPostCode= surburbDao.findAllBypostCode(postCode); 
 	  List<SurburbResponseDto> surburbDto = new ArrayList<>();
-	  
+    
 	  if(!ObjectUtils.isEmpty(findByPostCode)) {
 		  log.info("finding the total number of surburb");
-	   long total = findByPostCode.stream().count();
+		 Integer total= findByPostCode.stream().map(e->e.getSuburbName().toString().length()).reduce(Integer::sum).get();
 		  surburbDto=findByPostCode.stream().map(e-> new SurburbResponseDto(e.getSuburbName() , e.getPostCode(),total)).toList();
+	
 	  }
 	  else {
 		  log.error("post code do not exist in database");
 		  throw new ValidationException("post code do not exist in database");
 	  }
 	  
-	  
-	return surburbDto;
-	  
+ 
+     
+      return surburbDto;
   }
 
 

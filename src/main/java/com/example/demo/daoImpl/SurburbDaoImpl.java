@@ -23,8 +23,6 @@ public class SurburbDaoImpl implements SuburbDao {
 		return surburbRepository.save(surburb);
 	}
 	
-
-
 	@Override
 	public List<SurburbModel> findAllBypostCode(List<String> postCode) {
 		List<SurburbModel> model = new ArrayList<>();
