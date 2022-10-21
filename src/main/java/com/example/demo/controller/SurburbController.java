@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.SurburbResponseDto;
 import com.example.demo.endPoint.SurburbEndPoint;
 import com.example.demo.exception.ValidationException;
+import com.example.demo.model.SurburbModel;
 import com.example.demo.processor.SurburbProcessor;
 
 import lombok.extern.slf4j.Slf4j;
@@ -20,16 +21,15 @@ public class SurburbController implements SurburbEndPoint {
 	private SurburbProcessor surburbProcessor;
 
 	@Override
-	public ResponseEntity<String> saveSurburb(@RequestBody List<SurburbResponseDto> surburbDtos)
-			throws ValidationException {
+	public ResponseEntity<?> saveSurburb(@RequestBody List<SurburbResponseDto> surburbDtos) throws ValidationException {
 		log.info("putting surburbDto inside surburb processsor");
-		surburbProcessor.saveSurburb(surburbDtos);
-		return new ResponseEntity<>("result successful result", HttpStatus.OK);
+		List<SurburbModel> surburb = surburbProcessor.saveSurburb(surburbDtos);
+		return new ResponseEntity<>(surburb, HttpStatus.OK);
 	}
 
 	@Override
-	public List<SurburbResponseDto> getSurburbByPostCode(List<String> postCode) throws ValidationException {
-		return surburbProcessor.getSurburbByPostCode(postCode);
-
+	public ResponseEntity<?> getSurburbByPostCode(List<String> postCode) throws ValidationException {
+		List<SurburbResponseDto> surburbDto = surburbProcessor.getSurburbByPostCode(postCode);
+		return new ResponseEntity<>(surburbDto, HttpStatus.OK);
 	}
 }

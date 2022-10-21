@@ -2,8 +2,7 @@ package com.example.demo.exception;
 
 import org.springframework.http.HttpStatus;
 
-
-public class ValidationException extends BaseRuntimeException{
+public class ValidationException extends BaseRuntimeException {
 
 	/**
 	 * 

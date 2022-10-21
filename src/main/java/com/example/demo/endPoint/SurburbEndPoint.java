@@ -17,12 +17,11 @@ import com.example.demo.exception.ValidationException;
 @RequestMapping(path = "api/v1")
 public interface SurburbEndPoint {
 	@PostMapping("/save")
-	public ResponseEntity<String> saveSurburb(@RequestBody List<SurburbResponseDto> surburbDto)
-			throws ValidationException;
+	public ResponseEntity<?> saveSurburb(@RequestBody List<SurburbResponseDto> surburbDto) throws ValidationException;
 
 	@GetMapping(path = "postCode")
 	@ResponseBody
-	public List<SurburbResponseDto> getSurburbByPostCode(@RequestParam(value = "postCode") List<String> postCode)
+	public ResponseEntity<?> getSurburbByPostCode(@RequestParam(value = "postCode") List<String> postCode)
 			throws ValidationException;
 
 }

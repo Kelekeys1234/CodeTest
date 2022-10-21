@@ -19,7 +19,7 @@ public class BaseRuntimeException extends RuntimeException {
 	public BaseRuntimeException() {
 		status = HttpStatus.INTERNAL_SERVER_ERROR;
 	}
-	
+
 	public BaseRuntimeException(String message) {
 		super(message);
 		status = HttpStatus.INTERNAL_SERVER_ERROR;
@@ -29,6 +29,7 @@ public class BaseRuntimeException extends RuntimeException {
 		super(cause);
 		status = HttpStatus.INTERNAL_SERVER_ERROR;
 	}
+
 	/**
 	 * @param message
 	 * @param cause

@@ -10,6 +10,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.example.demo.dao.SuburbDao;
 import com.example.demo.dto.SurburbResponseDto;
+import com.example.demo.exception.NotFoundException;
 import com.example.demo.exception.ValidationException;
 import com.example.demo.model.SurburbModel;
 
@@ -37,15 +38,15 @@ public class SurburbProcessor {
 		List<SurburbResponseDto> surburbDto = new ArrayList<>();
 		log.info("checking if post code is present in Database");
 		if (!CollectionUtils.isEmpty(surburbName)) {
-			log.info("finding the total number of surburb name characters ");
+			log.info("finding the total number of surburb name characters");
 			Integer total = surburbName.stream().map(e -> e.getSuburbName().toString().length()).reduce(Integer::sum)
 					.get();
 			surburbDto = surburbName.stream()
 					.map(e -> new SurburbResponseDto(e.getSuburbName(), e.getPostCode(), total)).toList();
 
 		} else {
-			log.error("post code do not exist in database {}");
-			throw new ValidationException("post code do not exist in database");
+			log.error("post code do not exist in database");
+			throw new NotFoundException("post code do not exist in database");
 		}
 
 		return surburbDto;
