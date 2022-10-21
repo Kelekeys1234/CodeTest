@@ -19,8 +19,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "surburb_name" }, name = "UK_SUB_NAME") }, indexes = {
-		@Index(name = "IDX_POST_CODE", columnList = "post_code", unique = false) })
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "post_code" }, name = "UK_SUB_CODE") }, indexes = {
+		@Index(name = "IDX_POST_CODE", columnList = "post_code", unique = true) })
 public class SurburbModel {
 	@Id
 	@Column(name = "id", unique = true, nullable = false, length = 36)

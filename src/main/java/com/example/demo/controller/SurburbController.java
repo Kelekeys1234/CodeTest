@@ -6,9 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import javax.xml.bind.ValidationException;
 import com.example.demo.dto.SurburbResponseDto;
 import com.example.demo.endPoint.SurburbEndPoint;
+import com.example.demo.exception.ValidationException;
 import com.example.demo.processor.SurburbProcessor;
 
 import lombok.extern.slf4j.Slf4j;

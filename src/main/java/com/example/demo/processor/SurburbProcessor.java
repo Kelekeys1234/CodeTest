@@ -3,13 +3,16 @@ package com.example.demo.processor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import javax.xml.bind.ValidationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
+import org.springframework.util.CollectionUtils;
+
 import com.example.demo.dao.SuburbDao;
 import com.example.demo.dto.SurburbResponseDto;
+import com.example.demo.exception.ValidationException;
 import com.example.demo.model.SurburbModel;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -33,15 +36,15 @@ public class SurburbProcessor {
 		List<SurburbModel> surburbName = surburbDao.findAllBypostCode(postCode);
 		List<SurburbResponseDto> surburbDto = new ArrayList<>();
 		log.info("checking if post code is present in Database");
-		if (!ObjectUtils.isEmpty(surburbName)) {
-			log.info("finding the total number of surburb");
+		if (!CollectionUtils.isEmpty(surburbName)) {
+			log.info("finding the total number of surburb name characters ");
 			Integer total = surburbName.stream().map(e -> e.getSuburbName().toString().length()).reduce(Integer::sum)
 					.get();
 			surburbDto = surburbName.stream()
 					.map(e -> new SurburbResponseDto(e.getSuburbName(), e.getPostCode(), total)).toList();
 
 		} else {
-			log.error("post code do not exist in database");
+			log.error("post code do not exist in database {}");
 			throw new ValidationException("post code do not exist in database");
 		}
 
