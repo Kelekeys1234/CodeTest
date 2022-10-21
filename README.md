@@ -13,7 +13,7 @@ For building and running the application you need:
 
 There are several ways to run a Spring Boot application on your local machine. One way is to execute the `main` method in the `de.codecentric.springbootsample.Application` class from your IDE.
 
-For building and running the application you need:
+For testing the application you need:
 
 
 - [PostMan](http://www.postman.com)
