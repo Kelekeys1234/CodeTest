@@ -1,7 +1,7 @@
 # codeTest
 [![Build Status](https://travis-ci.org/codecentric/springboot-sample-app.svg?branch=master)](https://travis-ci.org/codecentric/springboot-sample-app)
 
-Minimal [Spring Boot](http://projects.spring.io/spring-boot/)  sample app.
+Surburb codeTest [Spring Boot](http://projects.spring.io/spring-boot/)  sample app.
 
 ## Requirements
 
