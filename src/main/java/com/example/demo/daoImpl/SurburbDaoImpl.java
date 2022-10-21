@@ -19,9 +19,9 @@ public class SurburbDaoImpl implements SuburbDao {
 	private SurburbRepository surburbRepository;
 
 	@Override
-	public SurburbModel saveSurburb(SurburbModel surburb) {
+	public List<SurburbModel> saveSurburb(List<SurburbModel> surburb) {
 		log.info("saving surbub into the database");
-		return surburbRepository.save(surburb);
+		return surburbRepository.saveAll(surburb);
 	}
 
 	@Override

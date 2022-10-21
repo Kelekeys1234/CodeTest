@@ -18,12 +18,9 @@ public class SurburbProcessor {
 	@Autowired
 	private SuburbDao surburbDao;
 
-	public SurburbModel saveSurburb(SurburbResponseDto surburbDto) throws ValidationException {
-		SurburbModel surburbModel = new SurburbModel();
-		log.info("checking if surburbName and post code is empty or not");
-		surburbModel.setId(UUID.randomUUID().toString());
-		surburbModel.setSuburbName(surburbDto.getSurburbName());
-		surburbModel.setPostCode(surburbDto.getPostCode());
+	public List<SurburbModel> saveSurburb(List<SurburbResponseDto> surburbDtos) throws ValidationException {
+		List<SurburbModel> surburbModel = surburbDtos.stream()
+				.map(e -> new SurburbModel(UUID.randomUUID(), e.getSurburbName(), e.getPostCode())).toList();
 		log.info("saving surburb to database");
 		surburbDao.saveSurburb(surburbModel);
 
@@ -52,4 +49,3 @@ public class SurburbProcessor {
 	}
 
 }
-
