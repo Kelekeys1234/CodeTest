@@ -24,7 +24,6 @@ public class SurburbController implements SurburbEndPoint {
 			throws ValidationException {
 		log.info("putting surburbDto inside surburb processsor");
 		surburbProcessor.saveSurburb(surburbDtos);
-
 		return new ResponseEntity<>("result successful result", HttpStatus.OK);
 	}
 
