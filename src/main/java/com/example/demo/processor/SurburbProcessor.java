@@ -17,40 +17,39 @@ import lombok.extern.slf4j.Slf4j;
 public class SurburbProcessor {
 	@Autowired
 	private SuburbDao surburbDao;
-	
-  public SurburbModel saveSurburb(SurburbResponseDto surburbDto) throws ValidationException  {
-	  SurburbModel surburbModel= new SurburbModel();
-      log.info("checking if surburbName and post code is empty or not");
-	
-		  surburbModel.setId(UUID.randomUUID().toString());
-		  surburbModel.setSuburbName(surburbDto.getSurburbName());
-		  surburbModel.setPostCode(surburbDto.getPostCode());
-		  log.info("saving surburb to database");
-		  surburbDao.saveSurburb(surburbModel);
-	 
-	  return surburbModel;
-	  
-  }
-  public List<SurburbResponseDto> getSurburbByPostCode (List<String> postCode) throws ValidationException {
-	  log.info("checking if post code exist in database");
-	  List<SurburbModel> findByPostCode= surburbDao.findAllBypostCode(postCode); 
-	  List<SurburbResponseDto> surburbDto = new ArrayList<>();
-    
-	  if(!ObjectUtils.isEmpty(findByPostCode)) {
-		  log.info("finding the total number of surburb");
-		 Integer total= findByPostCode.stream().map(e->e.getSuburbName().toString().length()).reduce(Integer::sum).get();
-		  surburbDto=findByPostCode.stream().map(e-> new SurburbResponseDto(e.getSuburbName() , e.getPostCode(),total)).toList();
-	
-	  }
-	  else {
-		  log.error("post code do not exist in database");
-		  throw new ValidationException("post code do not exist in database");
-	  }
-	  
- 
-     
-      return surburbDto;
-  }
 
+	public SurburbModel saveSurburb(SurburbResponseDto surburbDto) throws ValidationException {
+		SurburbModel surburbModel = new SurburbModel();
+		log.info("checking if surburbName and post code is empty or not");
+		surburbModel.setId(UUID.randomUUID().toString());
+		surburbModel.setSuburbName(surburbDto.getSurburbName());
+		surburbModel.setPostCode(surburbDto.getPostCode());
+		log.info("saving surburb to database");
+		surburbDao.saveSurburb(surburbModel);
+
+		return surburbModel;
+
+	}
+
+	public List<SurburbResponseDto> getSurburbByPostCode(List<String> postCode) throws ValidationException {
+		log.info("checking if post code exist in database");
+		List<SurburbModel> surburbName = surburbDao.findAllBypostCode(postCode);
+		List<SurburbResponseDto> surburbDto = new ArrayList<>();
+		log.info("checking if post code is present in Database");
+		if (!ObjectUtils.isEmpty(surburbName)) {
+			log.info("finding the total number of surburb");
+			Integer total = surburbName.stream().map(e -> e.getSuburbName().toString().length()).reduce(Integer::sum)
+					.get();
+			surburbDto = surburbName.stream()
+					.map(e -> new SurburbResponseDto(e.getSuburbName(), e.getPostCode(), total)).toList();
+
+		} else {
+			log.error("post code do not exist in database");
+			throw new ValidationException("post code do not exist in database");
+		}
+
+		return surburbDto;
+	}
 
 }
+

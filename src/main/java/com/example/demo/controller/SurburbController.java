@@ -20,28 +20,26 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class SurburbController implements SurburbEndPoint {
 	@Autowired
-    private SurburbProcessor surburbProcessor;
-	@Override
-	public ResponseEntity<String> saveSurburb(@RequestBody List<SurburbResponseDto> surburbDtos) throws ValidationException {
+	private SurburbProcessor surburbProcessor;
 
-    surburbDtos.stream().forEach(surburbDto->{
-    	log.info("putting surburbDto inside surburb processsor");
-		   try {
-			surburbProcessor.saveSurburb(surburbDto);
-	
+	@Override
+	public ResponseEntity<String> saveSurburb(@RequestBody List<SurburbResponseDto> surburbDtos)
+			throws ValidationException {
+		surburbDtos.stream().forEach(surburbDto -> {
+			log.info("putting surburbDto inside surburb processsor");
+			try {
+				surburbProcessor.saveSurburb(surburbDto);
 			} catch (javax.xml.bind.ValidationException e) {
-				
 				e.printStackTrace();
-			}  
-	   
-    });
-		 return new ResponseEntity<>("result successful result" ,
-				   HttpStatus.OK);
+			}
+		});
+		return new ResponseEntity<>("result successful result", HttpStatus.OK);
 	}
 
 	@Override
-	public List<SurburbResponseDto> getSurburbByPostCode(List<String> postCode) throws javax.xml.bind.ValidationException {
+	public List<SurburbResponseDto> getSurburbByPostCode(List<String> postCode)
+			throws javax.xml.bind.ValidationException {
 		return surburbProcessor.getSurburbByPostCode(postCode);
-		
+
 	}
 }

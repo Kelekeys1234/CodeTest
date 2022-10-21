@@ -11,8 +11,9 @@ public class CodingTestApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CodingTestApplication.class, args);
 	}
+
 	@Bean
 	public RestTemplate restTemplate() {
-	    return new RestTemplate();
+		return new RestTemplate();
 	}
 }

@@ -17,15 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.SurburbResponseDto;
 
 @RestController
-@RequestMapping(path="api/v1")
+@RequestMapping(path = "api/v1")
 public interface SurburbEndPoint {
 	@PostMapping("/save")
-	public ResponseEntity<String> saveSurburb(@RequestBody List<SurburbResponseDto> surburbDto) throws ValidationException;
-	
-	@GetMapping(path="postCode")
-	@ResponseBody
-	public List<SurburbResponseDto> getSurburbByPostCode(@RequestParam(value="postCode") List<String> postCode) throws ValidationException;
+	public ResponseEntity<String> saveSurburb(@RequestBody List<SurburbResponseDto> surburbDto)
+			throws ValidationException;
 
-	
+	@GetMapping(path = "postCode")
+	@ResponseBody
+	public List<SurburbResponseDto> getSurburbByPostCode(@RequestParam(value = "postCode") List<String> postCode)
+			throws ValidationException;
 
 }

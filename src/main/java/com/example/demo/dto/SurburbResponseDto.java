@@ -15,15 +15,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SurburbResponseDto {
 
-  @JsonProperty("surburb_name")
-  @NotBlank(message = "surburb name must not be blank")
-  private List<String> surburbName;
+	@JsonProperty("surburb_name")
+	@NotBlank(message = "surburb name must not be blank")
+	private List<String> surburbName;
 
-  @JsonProperty("post_code")
-  @NotBlank(message = "surburb name must not be blank")
-  private String postCode;
-  
-  @JsonProperty("total")
-  private Integer total;
+	@JsonProperty("post_code")
+	@NotBlank(message = "surburb name must not be blank")
+	private String postCode;
+
+	@JsonProperty("total")
+	private Integer total;
 
 }

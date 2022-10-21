@@ -18,13 +18,13 @@ import lombok.NoArgsConstructor;
 
 public class SurburbModel {
 	@Id
-	@Column(name = "id", unique = true, nullable = false, length=36)
-    private String id;
-	
+	@Column(name = "id", unique = true, nullable = false, length = 36)
+	private String id;
+
 	@Column
 	@Convert(converter = ListToStringConverter.class)
-    private List<String> suburbName;
-	
+	private List<String> suburbName;
+
 	@Column
 	private String postCode;
 }

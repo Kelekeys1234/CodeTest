@@ -16,20 +16,17 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class SurburbDaoImpl implements SuburbDao {
 	@Autowired
-    private SurburbRepository surburbRepository;
+	private SurburbRepository surburbRepository;
+
 	@Override
 	public SurburbModel saveSurburb(SurburbModel surburb) {
 		log.info("saving surbub into the database");
 		return surburbRepository.save(surburb);
 	}
-	
+
 	@Override
 	public List<SurburbModel> findAllBypostCode(List<String> postCode) {
-		List<SurburbModel> model = new ArrayList<>();
-		for(String e:postCode) {
-    	model=surburbRepository.findByPostCode(e);
-		};
-		return model;
-		
+		return surburbRepository.findAllByPostCodeInOrderBySuburbName(postCode);
+
 	}
 }
